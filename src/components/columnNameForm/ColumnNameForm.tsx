@@ -10,19 +10,27 @@ interface ColumnNameFormProps {
 const ColumnNameForm:FC<ColumnNameFormProps> = ({ id, name }) => {
   const [columnName, setColumnName] = useState<string>(name);
 
-  const handleChange = useCallback((event) => {
-    setColumnName(event.currentTarget.value)
-  }, [])
+  const handleChange = useCallback((e) => {
+    e.preventDefault();
 
-  const handleSubmit = useCallback(() => {
-
-    // TODO: не очень красиво, лучше будет с помощью .map() пройтись по всем элементам массива и заменить ту запись где нужный id
-    let columns = localStorageService.getItem('columns');
-    let columnIndex = columns.findIndex((c: Column) => c.id === id)
-
-    columns[columnIndex] = columnName;
-    localStorageService.setItem('columns', columns);
+    setColumnName(e.currentTarget.value);
   }, []);
+
+  const handleSubmit = useCallback((e) => {
+    e.preventDefault();
+
+    let previousColumns = localStorageService.getItem('columns');
+
+    const updatedColumns = previousColumns.map((column: Column) => {
+      if (column.id === id) {
+        column.name = columnName;
+      }
+
+      return column;
+    });
+
+    localStorageService.setItem('columns', updatedColumns);
+  }, [columnName]);
 
   return(
     <form onSubmit={handleSubmit}>
