@@ -1,5 +1,6 @@
 import { FC } from 'react';
-import styled from "styled-components";
+import styled from 'styled-components';
+import ColumnNameForm from '../columnNameForm';
 
 interface ColumnProps {
   id: number,
@@ -9,7 +10,7 @@ interface ColumnProps {
 const Column:FC<ColumnProps> = ({ id, name }) => {
   return(
     <Container>
-      <ColumnName>{ name }</ColumnName>
+      <ColumnNameForm id={id} name={name} />
     </Container>
   );
 };
@@ -21,12 +22,6 @@ const Container = styled.div`
   height: fit-content;
   margin-left: 12px;
   padding: 10px;
-`;
-
-const ColumnName = styled.div`
-  color: #2d3436;
-  font-weight: bold;
-  padding: 6px 6px 12px;
 `;
 
 export default Column;
