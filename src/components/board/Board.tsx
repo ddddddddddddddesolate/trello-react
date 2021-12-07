@@ -7,6 +7,7 @@ import { initColumns } from './mock';
 
 
 const Board:FC = () => {
+  // TODO: про any мы уже разговаривали, оставлю чтобы не забыл
   const [columns, setColumns] = useState<any []>([]);
 
   const getDefaultColumns = () => {
@@ -30,6 +31,13 @@ const Board:FC = () => {
     <>
       <Header />
       <ColumnsContainer>
+        {/*
+         TODO: это не обязательно, но чтобы просто знал, если тебе передать все данные в компонент то ты можешь написать так
+          {columns.map((column) => (
+            <Column {...column} />
+          ))}
+          Может быть полезно если нужно передать очень много пропсов
+        */}
         {columns.map(({ id, name }) => (
           <Column id={id} name={name} />
         ))}

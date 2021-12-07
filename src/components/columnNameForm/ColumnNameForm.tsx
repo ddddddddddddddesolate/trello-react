@@ -15,11 +15,12 @@ const ColumnNameForm:FC<ColumnNameFormProps> = ({ id, name }) => {
   }, [])
 
   const handleSubmit = useCallback(() => {
+
+    // TODO: не очень красиво, лучше будет с помощью .map() пройтись по всем элементам массива и заменить ту запись где нужный id
     let columns = localStorageService.getItem('columns');
     let columnIndex = columns.findIndex((c: Column) => c.id === id)
 
     columns[columnIndex] = columnName;
-
     localStorageService.setItem('columns', columns);
   }, []);
 
@@ -31,3 +32,5 @@ const ColumnNameForm:FC<ColumnNameFormProps> = ({ id, name }) => {
 };
 
 export default ColumnNameForm;
+
+
