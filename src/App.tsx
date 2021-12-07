@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { FC } from 'react';
+import Board from './components/board';
+import styled from "styled-components";
 
-function App() {
-  return (
-    <div className="App" />
+const App:FC = () => {
+  return(
+    <Container>
+      <Board />
+    </Container>
   );
-}
+};
+
+const Container = styled.div`
+  font-family: sans-serif;
+`;
 
 export default App;
