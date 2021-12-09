@@ -1,6 +1,7 @@
 import { FC, useCallback, useState } from 'react';
 import localStorageService from '../../services/storage';
 import { Column } from '../../types/column';
+import styled from 'styled-components';
 
 interface ColumnNameFormProps {
   id: number,
@@ -34,10 +35,22 @@ const ColumnNameForm:FC<ColumnNameFormProps> = ({ id, name }) => {
 
   return(
     <form onSubmit={handleSubmit}>
-      <input type="text" value={columnName} onChange={handleChange}/>
+      <ColumnNameInput type="text" value={columnName} onChange={handleChange} />
     </form>
   );
 };
+
+const ColumnNameInput = styled.input`
+  color: #2d3436;
+  font-weight: bold;
+  padding: 6px;
+  margin-bottom: 6px;
+  background: transparent;
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 18px;
+`;
 
 export default ColumnNameForm;
 
