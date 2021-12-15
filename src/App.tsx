@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import Board from './components/board';
-import styled from "styled-components";
+import styled from 'styled-components';
 
 //TODO подключи prettier и eslint правила можешь самостоятельно выбрать (но в стажировке говорят airbnb), главное научиться
 
@@ -14,6 +14,7 @@ const App:FC = () => {
 
 const Container = styled.div`
   font-family: sans-serif;
+  position: relative;
 `;
 
 export default App;
