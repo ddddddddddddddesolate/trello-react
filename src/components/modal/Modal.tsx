@@ -8,7 +8,9 @@ interface PortalProps {
 }
 
 interface ModalProps {
+  //TODO: пропсы булевые обычно называется isVisible, т.е. начинаются с is
   visible: boolean,
+  // TODO: если пропс это функция то обычно называются onClose  или closeHandle, мне кажется с on лучше т.к. меньше писать и так же понятно
   close: () => void,
   children: ReactElement,
 }
