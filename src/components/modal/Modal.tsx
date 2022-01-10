@@ -1,4 +1,4 @@
-import { FC, ReactElement, useCallback } from 'react';
+import { FC, ReactElement } from 'react';
 import { createPortal } from 'react-dom';
 import styled from 'styled-components';
 import closeIcon from '../../assets/icons/close.svg';
@@ -8,36 +8,29 @@ interface PortalProps {
 }
 
 interface ModalProps {
-  //TODO: пропсы булевые обычно называется isVisible, т.е. начинаются с is
-  visible: boolean,
-  // TODO: если пропс это функция то обычно называются onClose  или closeHandle, мне кажется с on лучше т.к. меньше писать и так же понятно
-  close: () => void,
+  isVisible: boolean,
+  closable: boolean,
+  onClose: () => void,
   children: ReactElement,
 }
 
 const Portal:FC<PortalProps> = ({ children }) =>
   createPortal(children, document.body);
 
-const Modal:FC<ModalProps> = ({ visible, close, children }) => {
-  const handleCloseModal = useCallback(() => {
-    close();
-  }, []);
+const Modal:FC<ModalProps> = ({ isVisible, closable, onClose, children }) =>
+  <Portal>
+    <>
+      {isVisible && (
+        <Container>
+          <Content>
+            {closable && <CloseButton onClick={onClose} />}
 
-  return (
-    <Portal>
-      <>
-        {visible && (
-          <Container>
-            <Content>
-              <CloseButton onClick={handleCloseModal} />
-              {children}
-            </Content>
-          </Container>
-        )}
-      </>
-    </Portal>
-  );
-};
+            {children}
+          </Content>
+        </Container>
+      )}
+    </>
+  </Portal>;
 
 const Container = styled.div`
   position: fixed;
