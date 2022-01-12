@@ -48,6 +48,7 @@ const Board:FC = () => {
     <>
       <Header />
       <ColumnsContainer>
+        {/*TODO: key чисто служебный пропс, можешь не запариваться добавляя "column-"*/}
         {columns.map(column => <Column key={`column-${column.id}`} {...column} />)}
       </ColumnsContainer>
 

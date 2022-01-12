@@ -11,7 +11,10 @@ const UserNameForm:FC<UserNameFormProps> = ({ submit }) => {
   const handleChange = useCallback(event => setUserName(event.target.value), [])
 
   const handleSubmit = useCallback(() => submit(userName), [submit, userName]);
-
+  /*
+  TODO: ты до этого называл стилизованные компоненты просто семантически а здесь стал называть с приставкой Styled.
+  Выбери один подход который тебе кажется правильным и используй везде, выбор на твое усмотрение
+   */
   return(
     <StyledForm onSubmit={handleSubmit}>
       <StyledLabel htmlFor="userName">User name</StyledLabel>
