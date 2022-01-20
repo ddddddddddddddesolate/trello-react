@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import styled from 'styled-components';
-import ColumnNameForm from '../columnNameForm';
+import ColumnNameForm from './components/columnNameForm';
 
 interface ColumnProps {
   id: number,

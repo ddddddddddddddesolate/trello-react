@@ -1,6 +1,6 @@
 import { FC, useCallback, useState } from 'react';
-import localStorageService from '../../services/storage';
-import { Column } from '../../types/column';
+import localStorageService from '../../../../services/storage';
+import { Column } from '../../../../types/column';
 import styled from 'styled-components';
 
 interface ColumnNameFormProps {
