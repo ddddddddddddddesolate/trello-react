@@ -47,10 +47,9 @@ const Board:FC = () => {
   return(
     <>
       <Header />
-      <ColumnsContainer>
-        {/*TODO: key чисто служебный пропс, можешь не запариваться добавляя "column-"*/}
-        {columns.map(column => <Column key={`column-${column.id}`} {...column} />)}
-      </ColumnsContainer>
+      <StyledColumnsContainer>
+        {columns.map(column => <Column key={column.id} {...column} />)}
+      </StyledColumnsContainer>
 
 
       <Modal isVisible={modalVisible} closable={false} onClose={handleModalClose}>
@@ -60,7 +59,7 @@ const Board:FC = () => {
   );
 };
 
-const ColumnsContainer = styled.div`
+const StyledColumnsContainer = styled.div`
   height: 100vh;
   width: 100vw;
   background-color: #2f3640;

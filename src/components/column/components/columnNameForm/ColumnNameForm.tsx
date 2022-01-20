@@ -35,12 +35,12 @@ const ColumnNameForm:FC<ColumnNameFormProps> = ({ id, name }) => {
 
   return(
     <form onSubmit={handleSubmit}>
-      <ColumnNameInput type="text" value={columnName} onChange={handleChange} />
+      <StyledInput type="text" value={columnName} onChange={handleChange} />
     </form>
   );
 };
 
-const ColumnNameInput = styled.input`
+const StyledInput = styled.input`
   color: #2d3436;
   font-weight: bold;
   padding: 6px;

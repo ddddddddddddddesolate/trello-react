@@ -4,14 +4,14 @@ import styled from 'styled-components';
 const Header:FC = () => {
   return(
     <>
-      <Container>
-        <Title>Trello React</Title>
-      </Container>
+      <StyledContainer>
+        <StyledTitle>Trello React</StyledTitle>
+      </StyledContainer>
     </>
   );
 };
 
-const Container = styled.div`
+const StyledContainer = styled.div`
   background-color: rgba(255, 255, 255, .2);
   position: absolute;
   display: flex;
@@ -23,7 +23,7 @@ const Container = styled.div`
   height: 48px;
 `;
 
-const Title = styled.p`
+const StyledTitle = styled.p`
   color: #fff;
   font-size: 24px;
   font-weight: bold;

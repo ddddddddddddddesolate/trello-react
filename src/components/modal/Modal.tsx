@@ -21,18 +21,18 @@ const Modal:FC<ModalProps> = ({ isVisible, closable, onClose, children }) =>
   <Portal>
     <>
       {isVisible && (
-        <Container>
-          <Content>
-            {closable && <CloseButton onClick={onClose} />}
+        <StyledContainer>
+          <StyledContent>
+            {closable && <StyledCloseButton onClick={onClose} />}
 
             {children}
-          </Content>
-        </Container>
+          </StyledContent>
+        </StyledContainer>
       )}
     </>
   </Portal>;
 
-const Container = styled.div`
+const StyledContainer = styled.div`
   position: fixed;
   left: 0;
   top: 0;
@@ -42,7 +42,7 @@ const Container = styled.div`
   overflow: hidden;
 `;
 
-const Content = styled.div`
+const StyledContent = styled.div`
   width: 30%;
   margin: 20% auto;
   height: fit-content;
@@ -52,7 +52,7 @@ const Content = styled.div`
   position: relative;
 `;
 
-const CloseButton = styled.button`
+const StyledCloseButton = styled.button`
   position: absolute;
   top: 0;
   right: 0;
