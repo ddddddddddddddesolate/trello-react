@@ -39,7 +39,7 @@ const StyledLabel = styled.label`
 `;
 
 const StyledTextInput = styled.input`
-  width: 100%;
+  width: 95%;
   padding: 10px;
   border: 2px solid #2d3436;
   border-radius: 3px;
