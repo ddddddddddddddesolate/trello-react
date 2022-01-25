@@ -1,18 +1,20 @@
+import { v4 as uuid } from 'uuid';
+
 export const initColumns = [
   {
-    id: 1,
-    name: "TODO",
+    id: uuid(),
+    name: 'TODO',
   },
   {
-    id: 2,
-    name: "In Progress",
+    id: uuid(),
+    name: 'In Progress',
   },
   {
-    id: 3,
-    name: "Testing",
+    id: uuid(),
+    name: 'Testing',
   },
   {
-    id: 4,
-    name: "Done",
+    id: uuid(),
+    name: 'Done',
   },
 ];
