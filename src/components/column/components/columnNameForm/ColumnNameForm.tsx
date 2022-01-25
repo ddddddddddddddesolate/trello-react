@@ -1,14 +1,16 @@
 import { FC, useCallback, useState } from 'react';
-import localStorageService from '../../../../services/storage';
-import { Column } from '../../../../types/column';
 import styled from 'styled-components';
 
+import localStorageService from 'services/storage';
+
+import { ColumnType } from 'types/columnType';
+
 interface ColumnNameFormProps {
-  id: number,
-  name: string,
+  id: string;
+  name: string;
 }
 
-const ColumnNameForm:FC<ColumnNameFormProps> = ({ id, name }) => {
+const ColumnNameForm: FC<ColumnNameFormProps> = ({ id, name }) => {
   const [columnName, setColumnName] = useState<string>(name);
 
   const handleChange = useCallback((e) => {
@@ -17,23 +19,26 @@ const ColumnNameForm:FC<ColumnNameFormProps> = ({ id, name }) => {
     setColumnName(e.currentTarget.value);
   }, []);
 
-  const handleSubmit = useCallback((e) => {
-    e.preventDefault();
+  const handleSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
 
-    let previousColumns = localStorageService.getItem('columns');
+      let previousColumns = localStorageService.getItem('columns');
 
-    const updatedColumns = previousColumns.map((column: Column) => {
-      if (column.id === id) {
-        column.name = columnName;
-      }
+      const updatedColumns = previousColumns.map((column: ColumnType) => {
+        if (column.id === id) {
+          column.name = columnName;
+        }
 
-      return column;
-    });
+        return column;
+      });
 
-    localStorageService.setItem('columns', updatedColumns);
-  }, [columnName]);
+      localStorageService.setItem('columns', updatedColumns);
+    },
+    [columnName, id]
+  );
 
-  return(
+  return (
     <form onSubmit={handleSubmit}>
       <StyledInput type="text" value={columnName} onChange={handleChange} />
     </form>
@@ -53,5 +58,3 @@ const StyledInput = styled.input`
 `;
 
 export default ColumnNameForm;
-
-

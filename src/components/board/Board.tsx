@@ -7,15 +7,15 @@ import { initColumns } from './mock';
 import Modal from '../modal';
 import UserNameForm from '../userNameForm';
 
-
-const Board:FC = () => {
+const Board: FC = () => {
   // TODO: про any мы уже разговаривали, оставлю чтобы не забыл
-  const [columns, setColumns] = useState<any []>([]);
+  const [columns, setColumns] = useState<any[]>([]);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
 
   const getUserName = () => localStorageService.getItem('userName');
 
-  const setUserName = (userName: string) => localStorageService.setItem('userName', userName);
+  const setUserName = (userName: string) =>
+    localStorageService.setItem('userName', userName);
 
   const getDefaultColumns = () => {
     const defaultColumns = localStorageService.getItem('columns');
@@ -32,7 +32,10 @@ const Board:FC = () => {
 
   const handleModalClose = useCallback(() => setModalVisible(false), []);
 
-  const handleUserNameFormSubmit = useCallback((userName: string) => setUserName(userName), []);
+  const handleUserNameFormSubmit = useCallback(
+    (userName: string) => setUserName(userName),
+    []
+  );
 
   useEffect(() => {
     getDefaultColumns();
@@ -44,15 +47,20 @@ const Board:FC = () => {
     }
   }, []);
 
-  return(
+  return (
     <>
       <Header />
       <StyledColumnsContainer>
-        {columns.map(column => <Column key={column.id} {...column} />)}
+        {columns.map((column) => (
+          <Column key={`column-${column.id}`} {...column} />
+        ))}
       </StyledColumnsContainer>
 
-
-      <Modal isVisible={modalVisible} closable={false} onClose={handleModalClose}>
+      <Modal
+        isVisible={modalVisible}
+        closable={false}
+        onClose={handleModalClose}
+      >
         <UserNameForm submit={handleUserNameFormSubmit} />
       </Modal>
     </>

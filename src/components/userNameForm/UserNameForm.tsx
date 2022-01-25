@@ -1,27 +1,32 @@
-import { FC, useCallback, useState } from "react";
-import styled from "styled-components";
+import { FC, useCallback, useState } from 'react';
+import styled from 'styled-components';
 
 interface UserNameFormProps {
-  submit: (userName: string) => void
+  submit: (userName: string) => void;
 }
 
-const UserNameForm:FC<UserNameFormProps> = ({ submit }) => {
+const UserNameForm: FC<UserNameFormProps> = ({ submit }) => {
   const [userName, setUserName] = useState<string>('Unnamed');
 
-  const handleChange = useCallback(event => setUserName(event.target.value), [])
+  const handleChange = useCallback(
+    (event) => setUserName(event.target.value),
+    []
+  );
 
   const handleSubmit = useCallback(() => submit(userName), [submit, userName]);
-  /*
-  TODO: ты до этого называл стилизованные компоненты просто семантически а здесь стал называть с приставкой Styled.
-  Выбери один подход который тебе кажется правильным и используй везде, выбор на твое усмотрение
-   */
-  return(
+
+  return (
     <StyledForm onSubmit={handleSubmit}>
       <StyledLabel htmlFor="userName">User name</StyledLabel>
-      <StyledTextInput name="userName" type="text" value={userName} onChange={handleChange} />
+      <StyledTextInput
+        name="userName"
+        type="text"
+        value={userName}
+        onChange={handleChange}
+      />
 
       <StyledFormActions>
-        <StyledButton type="submit" >Save</StyledButton>
+        <StyledButton type="submit">Save</StyledButton>
       </StyledFormActions>
     </StyledForm>
   );
@@ -56,7 +61,7 @@ const StyledFormActions = styled.div`
 
 const StyledButton = styled.button`
   background-color: #2d3436;
-  border: 2px solid rgba(255, 255, 255, .2);
+  border: 2px solid rgba(255, 255, 255, 0.2);
   border-radius: 3px;
   padding: 5px;
   color: #fff;

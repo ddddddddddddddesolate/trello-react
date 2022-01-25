@@ -4,20 +4,20 @@ import styled from 'styled-components';
 import closeIcon from '../../assets/icons/close.svg';
 
 interface PortalProps {
-  children: ReactElement,
+  children: ReactElement;
 }
 
 interface ModalProps {
-  isVisible: boolean,
-  closable: boolean,
-  onClose: () => void,
-  children: ReactElement,
+  isVisible: boolean;
+  closable: boolean;
+  onClose: () => void;
+  children: ReactElement;
 }
 
-const Portal:FC<PortalProps> = ({ children }) =>
+const Portal: FC<PortalProps> = ({ children }) =>
   createPortal(children, document.body);
 
-const Modal:FC<ModalProps> = ({ isVisible, closable, onClose, children }) =>
+const Modal: FC<ModalProps> = ({ isVisible, closable, onClose, children }) => (
   <Portal>
     <>
       {isVisible && (
@@ -30,7 +30,8 @@ const Modal:FC<ModalProps> = ({ isVisible, closable, onClose, children }) =>
         </StyledContainer>
       )}
     </>
-  </Portal>;
+  </Portal>
+);
 
 const StyledContainer = styled.div`
   position: fixed;
@@ -38,7 +39,7 @@ const StyledContainer = styled.div`
   top: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, .3);
+  background: rgba(0, 0, 0, 0.3);
   overflow: hidden;
 `;
 
@@ -64,10 +65,10 @@ const StyledCloseButton = styled.button`
   z-index: 2;
   border: none;
   cursor: pointer;
-  transition: .3s;
-  
+  transition: 0.3s;
+
   &:hover {
-    opacity: .5;
+    opacity: 0.5;
   }
 `;
 

@@ -4,8 +4,8 @@ import styled from 'styled-components';
 
 import Board from './components/board';
 
-const App:FC = () => {
-  return(
+const App: FC = () => {
+  return (
     <StyledContainer>
       <Board />
     </StyledContainer>

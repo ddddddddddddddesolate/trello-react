@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import styled from 'styled-components';
 
-const Header:FC = () => {
-  return(
+const Header: FC = () => {
+  return (
     <>
       <StyledContainer>
         <StyledTitle>Trello React</StyledTitle>
@@ -12,7 +12,7 @@ const Header:FC = () => {
 };
 
 const StyledContainer = styled.div`
-  background-color: rgba(255, 255, 255, .2);
+  background-color: rgba(255, 255, 255, 0.2);
   position: absolute;
   display: flex;
   flex-direction: row;
