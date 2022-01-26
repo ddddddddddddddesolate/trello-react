@@ -1,13 +1,41 @@
-import { FC } from 'react';
+import { FC, useCallback, useState } from 'react';
 import styled from 'styled-components';
 import { CardType } from 'types/cardType';
+import Modal from 'components/modal';
+import CardForm from './components/cardForm';
 
 interface Props {
   card: CardType;
 }
 
-const Card: FC<Props> = ({ card: { name } }) => {
-  return <StyledContainer>{name}</StyledContainer>;
+const Card: FC<Props> = ({ card }) => {
+  const [cardModalVisible, setCardModalVisible] = useState<boolean>(false);
+
+  const handleOpenCardModal = useCallback(
+    () => setCardModalVisible(true),
+    [cardModalVisible]
+  );
+
+  const handleCloseCardModal = useCallback(
+    () => setCardModalVisible(false),
+    [cardModalVisible]
+  );
+
+  return (
+    <>
+      <StyledContainer onClick={handleOpenCardModal}>
+        {card.name}
+      </StyledContainer>
+
+      <Modal
+        isVisible={cardModalVisible}
+        closable={true}
+        onClose={handleCloseCardModal}
+      >
+        <CardForm card={card} />
+      </Modal>
+    </>
+  );
 };
 
 const StyledContainer = styled.div`
@@ -17,6 +45,16 @@ const StyledContainer = styled.div`
   border-radius: 2px;
 
   background-color: rgba(255, 255, 255, 0.5);
+
+  transition: all 0.2s;
+
+  box-shadow: 0 2px rgba(0, 0, 0, 0.3);
+
+  &:hover {
+    cursor: pointer;
+
+    background-color: rgba(255, 255, 255, 0.3);
+  }
 `;
 
 export default Card;
