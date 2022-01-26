@@ -1,7 +1,7 @@
 import { FC, ReactElement } from 'react';
 import { createPortal } from 'react-dom';
 import styled from 'styled-components';
-import closeIcon from '../../assets/icons/close.svg';
+import closeIcon from 'assets/icons/close.svg';
 
 interface PortalProps {
   children: ReactElement;
