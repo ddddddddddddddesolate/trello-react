@@ -2,7 +2,7 @@ import { FC, useCallback, useState } from 'react';
 import styled from 'styled-components';
 import { CardType } from 'types/cardType';
 import Modal from 'components/modal';
-import CardForm from './components/cardForm';
+import CardForm from 'components/cardForm';
 
 interface Props {
   card: CardType;
@@ -11,14 +11,11 @@ interface Props {
 const Card: FC<Props> = ({ card }) => {
   const [cardModalVisible, setCardModalVisible] = useState<boolean>(false);
 
-  const handleOpenCardModal = useCallback(
-    () => setCardModalVisible(true),
-    [cardModalVisible]
-  );
+  const handleOpenCardModal = useCallback(() => setCardModalVisible(true), []);
 
   const handleCloseCardModal = useCallback(
     () => setCardModalVisible(false),
-    [cardModalVisible]
+    []
   );
 
   return (

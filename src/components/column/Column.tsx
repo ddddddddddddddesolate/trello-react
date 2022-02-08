@@ -5,12 +5,12 @@ import { v4 as uuid } from 'uuid';
 
 import localStorageService from 'services/storage';
 
-import ColumnNameForm from './components/columnNameForm';
-import AddCardButton from './components/addCardButton';
-import CardsList from './components/cardsList';
+import ColumnNameForm from 'components/columnNameForm';
+import AddCardButton from 'components/addCardButton';
+import CardsList from 'components/cardsList';
 
 import { CardType } from 'types/cardType';
-import AddCardForm from 'components/column/components/addCardForm';
+import AddCardForm from 'components/addCardForm';
 
 interface ColumnProps {
   id: string;
@@ -26,7 +26,7 @@ const Column: FC<ColumnProps> = ({ id, name }) => {
     const allCards = localStorageService.getItem('cards') || [];
 
     return allCards.filter((card: CardType) => card.columnId === id);
-  }, []);
+  }, [id]);
 
   const handleOpenCreateCardForm = useCallback(
     (): void => setCreateCardFormVisible(true),
@@ -51,7 +51,7 @@ const Column: FC<ColumnProps> = ({ id, name }) => {
     [getCards, id]
   );
 
-  useEffect(() => setCards(getCards()), []);
+  useEffect(() => setCards(getCards()), [getCards]);
 
   return (
     <StyledContainer>

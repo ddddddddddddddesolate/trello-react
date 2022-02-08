@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import { CardType } from 'types/cardType';
 import styled from 'styled-components';
-import Card from './components/card';
+import Card from 'components/card';
 
 interface Props {
   cards: CardType[];

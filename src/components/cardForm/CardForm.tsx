@@ -13,7 +13,7 @@ const CardForm: FC<Props> = ({ card: { id, name } }) => {
 
   const handleChangeName = useCallback(
     (e) => setCardName(e.currentTarget.value),
-    [cardName]
+    []
   );
 
   const handleSubmitName = useCallback(
@@ -32,7 +32,7 @@ const CardForm: FC<Props> = ({ card: { id, name } }) => {
 
       localStorageService.setItem('cards', updatedCards);
     },
-    [cardName]
+    [id, cardName]
   );
 
   useEffect(() => console.log(cardName), [cardName]);

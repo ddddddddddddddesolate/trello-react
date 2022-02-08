@@ -13,7 +13,10 @@ const AddCardForm: FC<Props> = ({ onSubmit }) => {
     []
   );
 
-  const handleSubmit = useCallback(() => onSubmit(cardName), [cardName]);
+  const handleSubmit = useCallback(
+    () => onSubmit(cardName),
+    [onSubmit, cardName]
+  );
 
   return (
     <form onSubmit={handleSubmit}>
