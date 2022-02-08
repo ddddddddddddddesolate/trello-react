@@ -33,6 +33,11 @@ const Column: FC<ColumnProps> = ({ id, name }) => {
     []
   );
 
+  const handleCloseCreateCardForm = useCallback(
+    (): void => setCreateCardFormVisible(false),
+    []
+  );
+
   const handleCreateCard = useCallback(
     (name: string): void => {
       let cards = localStorageService.getItem('cards') || [];
@@ -58,12 +63,17 @@ const Column: FC<ColumnProps> = ({ id, name }) => {
       <ColumnNameForm id={id} name={name} />
 
       <StyledCardsContainer>
-        {createCardFormVisible && <AddCardForm onSubmit={handleCreateCard} />}
-
         {cards.length !== 0 ? (
           <CardsList cards={cards} />
         ) : (
           <StyledEmpty>No cards found</StyledEmpty>
+        )}
+
+        {createCardFormVisible && (
+          <AddCardForm
+            onSubmit={handleCreateCard}
+            onBlur={handleCloseCreateCardForm}
+          />
         )}
 
         <AddCardButton onClick={handleOpenCreateCardForm} />

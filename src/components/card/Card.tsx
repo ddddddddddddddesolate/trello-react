@@ -47,6 +47,8 @@ const StyledContainer = styled.div`
 
   box-shadow: 0 2px rgba(0, 0, 0, 0.3);
 
+  word-wrap: break-word;
+
   &:hover {
     cursor: pointer;
 

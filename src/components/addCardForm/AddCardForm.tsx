@@ -3,9 +3,10 @@ import styled from 'styled-components';
 
 interface Props {
   onSubmit: (cardName: string) => void;
+  onBlur: () => void;
 }
 
-const AddCardForm: FC<Props> = ({ onSubmit }) => {
+const AddCardForm: FC<Props> = ({ onSubmit, onBlur }) => {
   const [cardName, setCardName] = useState<string>('');
 
   const handleChange = useCallback(
@@ -24,6 +25,8 @@ const AddCardForm: FC<Props> = ({ onSubmit }) => {
         type="text"
         placeholder="Card name..."
         onChange={handleChange}
+        onBlur={onBlur}
+        autoFocus
       />
     </form>
   );
