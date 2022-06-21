@@ -4,17 +4,21 @@ export const initColumns = [
   {
     id: uuid(),
     name: 'TODO',
+    cards: [],
   },
   {
     id: uuid(),
     name: 'In Progress',
+    cards: [],
   },
   {
     id: uuid(),
     name: 'Testing',
+    cards: [],
   },
   {
     id: uuid(),
     name: 'Done',
+    cards: [],
   },
 ];

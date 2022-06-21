@@ -1,20 +1,17 @@
-import React, { FC } from 'react';
+import React from 'react';
 
-import styled from 'styled-components';
+import Header from 'components/Header';
+import Board from './components/Board';
 
-import Board from './components/board';
+import styles from './App.module.scss';
 
-const App: FC = () => {
+const App = () => {
   return (
-    <StyledContainer>
+    <div className={styles.container}>
+      <Header />
       <Board />
-    </StyledContainer>
+    </div>
   );
 };
-
-const StyledContainer = styled.div`
-  font-family: sans-serif;
-  position: relative;
-`;
 
 export default App;
