@@ -1,7 +1,7 @@
 import { useCallback, useMemo } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
-import { ColumnType } from 'types/columnType';
+import { ColumnType } from 'app/types';
 
 import { LocalStorageService } from 'services/storage/LocalStorageService';
 

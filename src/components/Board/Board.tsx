@@ -1,30 +1,18 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
-
-import { initColumns } from 'components/Board/mock';
-import { ColumnType } from 'types/columnType';
-import { LocalStorageService } from 'services/storage/LocalStorageService';
-
 import Column from 'components/Column';
 
 import styles from './Board.module.scss';
+import { useSelector } from 'react-redux';
+import { RootStateType } from 'app/store';
+import { useEffect } from 'react';
+
+const columnsSelector = (state: RootStateType) => state.columnsReducer;
 
 const Board = () => {
-  const columnsStorage = useMemo<LocalStorageService<ColumnType>>(
-    () => new LocalStorageService<ColumnType>(),
-    []
-  );
+  const { columns } = useSelector(columnsSelector);
 
-  const [columns, setColumns] = useState<ColumnType[]>([]);
-
-  const setDefaultColumns = useCallback(() => {
-    const existingColumns = columnsStorage.getItems('columns');
-
-    columnsStorage.setItems('columns', existingColumns || initColumns);
-
-    setColumns(existingColumns || initColumns);
-  }, [columnsStorage]);
-
-  useEffect(() => setDefaultColumns(), [setDefaultColumns]);
+  useEffect(() => {
+    console.log(columns);
+  }, [columns]);
 
   return (
     <div className={styles.container}>

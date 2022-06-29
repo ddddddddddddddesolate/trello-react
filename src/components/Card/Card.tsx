@@ -1,4 +1,4 @@
-import { CardType } from 'types/cardType';
+import { CardType } from 'app/types';
 
 import styles from './Card.module.scss';
 

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
-import { CardType } from 'types/cardType';
+import { CardType } from 'app/types';
 import { LocalStorageService } from 'services/storage/LocalStorageService';
 
 import Card from 'components/Card';
