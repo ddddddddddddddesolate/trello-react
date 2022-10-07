@@ -1,12 +1,11 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 import { ColumnType } from 'app/types';
 
-import { LocalStorageService } from 'services/storage/LocalStorageService';
-
-import styles from './ColumnForm.module.scss';
 import TextInput from 'components/UI/TextInput';
+import { useDispatch } from 'react-redux';
+import { updateColumn } from 'app/slices/columns';
 
 interface FormValues {
   name: string;
@@ -15,10 +14,7 @@ interface FormValues {
 interface Props extends ColumnType {}
 
 const ColumnForm = ({ id, name }: Props) => {
-  const columnStorageService = useMemo<LocalStorageService<ColumnType>>(
-    () => new LocalStorageService<ColumnType>(),
-    []
-  );
+  const dispatch = useDispatch();
 
   const {
     control,
@@ -28,34 +24,24 @@ const ColumnForm = ({ id, name }: Props) => {
 
   const onSubmit = useCallback(
     ({ name: newName }: FormValues) => {
-      const columns = columnStorageService.getItems('columns');
-
-      const updatedColumns = columns.map((column) => {
-        if (column.id === id) {
-          column.name = newName;
-        }
-
-        return column;
-      });
-
-      columnStorageService.setItems('columns', updatedColumns);
+      dispatch(updateColumn({ id, name: newName }));
     },
-    [columnStorageService, id]
+    [dispatch, id]
   );
 
   return (
-    <div className={styles.container}>
+    <>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Controller
           name="name"
           control={control}
           render={({ field: { value, onChange } }) => (
-            <TextInput value={value} onChange={onChange} />
+            <TextInput id="name" value={value} onChange={onChange} />
           )}
         />
         {errors.name && <p>Required</p>} {/* TODO: implement error handling */}
       </form>
-    </div>
+    </>
   );
 };
 

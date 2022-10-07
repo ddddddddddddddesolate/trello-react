@@ -1,25 +1,27 @@
-import React, { useEffect } from 'react';
-
 import Header from 'components/Header';
 import Board from './components/Board';
 
 import styles from './App.module.scss';
 import { useSelector } from 'react-redux';
 import { RootStateType } from 'app/store';
+import Modal from 'components/Modal';
+import WelcomeForm from 'components/WelcomeForm';
 
-const currentUserSelector = (state: RootStateType) => state.currentUserReducer;
+const currentUserSelector = ({
+  currentUserReducer: { currentUser },
+}: RootStateType) => currentUser;
 
 const App = () => {
-  const { currentUser } = useSelector(currentUserSelector);
-
-  useEffect(() => {
-    console.log(currentUser);
-  }, [currentUser]);
+  const currentUser = useSelector(currentUserSelector);
 
   return (
     <div className={styles.container}>
       <Header />
       <Board />
+
+      <Modal isVisible={!currentUser}>
+        <WelcomeForm />
+      </Modal>
     </div>
   );
 };

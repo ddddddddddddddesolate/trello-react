@@ -1,6 +1,28 @@
-.container {
-  background: #FFFFFF;
-  border: 1px solid #DDDDDD;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
-  border-radius: 8px;
+.name {
+  cursor: pointer;
+  padding: 10px;
+
+  background-color: #FFF;
+  border-radius: 5px;
+
+  word-wrap: break-word;
+  text-overflow: ellipsis;
+
+  &:hover {
+    background-color: #FAFAFA;
+  }
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+
+  gap: 30px;
+
+  & > .column {
+    color: #7D8084;
+
+    font-weight: bold;
+    font-style: italic;
+  }
 }

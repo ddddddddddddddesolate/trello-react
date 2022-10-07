@@ -1,8 +1,12 @@
 import { useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Controller, useForm } from 'react-hook-form';
+import { v4 as uuid } from 'uuid';
+import { createCard } from 'app/slices/cards';
 
-import styles from './AddCardForm.module.scss';
 import TextInput from 'components/UI/TextInput';
+
+import { RootStateType } from 'app/store';
 
 interface FormValues {
   name: string;
@@ -12,30 +16,49 @@ interface Props {
   columnId: string;
 }
 
-// TODO: implement card form
-const AddCardForm = ({ columnId }: Props) => {
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({ defaultValues: { name: '' } });
+const currentUserSelector = ({
+  currentUserReducer: { currentUser },
+}: RootStateType) => currentUser;
 
-  // TODO: implement creating a card
-  const onSubmit = useCallback(({ name }: FormValues) => {}, []);
+const AddCardForm = ({ columnId }: Props) => {
+  const dispatch = useDispatch();
+
+  const currentUser = useSelector(currentUserSelector);
+
+  const { control, handleSubmit, reset } = useForm({
+    defaultValues: { name: '' },
+  });
+
+  const handleFormSubmit = useCallback(
+    ({ name }: FormValues) => {
+      if (currentUser) {
+        dispatch(
+          createCard({ id: uuid(), userId: currentUser.id, columnId, name })
+        );
+
+        reset({ name: '' });
+      }
+    },
+    [currentUser, dispatch, reset, columnId]
+  );
 
   return (
-    <div className={styles.container}>
-      <form onSubmit={handleSubmit(onSubmit)}>
+    <>
+      <form onSubmit={handleSubmit(handleFormSubmit)}>
         <Controller
           name="name"
           control={control}
           render={({ field: { value, onChange } }) => (
-            <TextInput value={value} onChange={onChange} />
+            <TextInput
+              id="name"
+              placeholder="Add a card"
+              value={value}
+              onChange={onChange}
+            />
           )}
         />
-        {errors.name && <p>Required</p>} {/* TODO: implement error handling */}
       </form>
-    </div>
+    </>
   );
 };
 

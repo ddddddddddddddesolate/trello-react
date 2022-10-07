@@ -1,29 +1,42 @@
-import { SyntheticEvent, useCallback } from 'react';
+import { SyntheticEvent } from 'react';
 
 import styles from './TextInput.module.scss';
 
 interface Props {
+  id: string;
+  label?: string;
+  placeholder?: string;
   value: string;
+  readOnly?: boolean;
 
-  onChange(event: SyntheticEvent<HTMLInputElement>): void;
+  onChange?: (event: SyntheticEvent<HTMLInputElement>) => void;
 }
 
-const TextInput = ({ value, onChange }: Props) => {
-  const handleChange = useCallback(
-    (event: SyntheticEvent<HTMLInputElement>) => onChange(event),
-    [onChange]
-  );
+const TextInput = ({
+  id,
+  label,
+  placeholder,
+  value,
+  readOnly,
+  onChange,
+}: Props) => (
+  <div className={styles.container}>
+    {label && (
+      <label className={styles.label} htmlFor={id}>
+        {label}
+      </label>
+    )}
 
-  return (
-    <div className={styles.container}>
-      <input
-        type="text"
-        className={styles.input}
-        defaultValue={value}
-        onChange={handleChange}
-      />
-    </div>
-  );
-};
+    <input
+      id={id}
+      type="text"
+      placeholder={placeholder}
+      className={readOnly ? styles.readOnlyInput : styles.input}
+      value={value}
+      readOnly={readOnly}
+      onChange={onChange}
+    />
+  </div>
+);
 
 export default TextInput;

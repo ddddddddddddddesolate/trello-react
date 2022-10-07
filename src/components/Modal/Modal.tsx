@@ -1,8 +1,10 @@
 import { FC, ReactElement, useCallback, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
+import CloseIcon from 'assets/icons/close.svg';
+
 // TODO: implement styles for modal
-// import styles from './Modal.module.scss';
+import styles from './Modal.module.scss';
 
 interface PortalProps {
   children: ReactElement;
@@ -10,36 +12,47 @@ interface PortalProps {
 
 interface ModalProps {
   isVisible: boolean;
-  closable: boolean;
-  onClose: () => void;
+  onClose?: () => void;
   children: ReactElement;
 }
 
 const Portal: FC<PortalProps> = ({ children }) =>
   createPortal(children, document.body);
 
-const Modal: FC<ModalProps> = ({ isVisible, closable, onClose, children }) => {
-  const handleEscapePress = useCallback((event) => {
-    if (event.keyCode === 27) {
-      onClose();
-    }
-  }, []);
+const Modal: FC<ModalProps> = ({ isVisible, onClose, children }) => {
+  const handleEscapePress = useCallback(
+    (event) => {
+      if (onClose && event.keyCode === 27) {
+        onClose();
+      }
+    },
+    [onClose]
+  );
 
   useEffect(() => {
-    if (closable) {
+    if (onClose) {
       window.addEventListener('keydown', handleEscapePress);
     }
-  }, []);
+  }, [onClose, handleEscapePress]);
 
   return (
     <Portal>
       <>
         {isVisible && (
-          <div>
-            <div>
-              {closable && <button onClick={onClose} />}
+          <div className={styles.overlay}>
+            <div
+              className={onClose ? styles.closableContainer : styles.container}
+            >
+              {onClose && (
+                <img
+                  src={CloseIcon}
+                  className={styles.close}
+                  onClick={onClose}
+                  alt="Close"
+                />
+              )}
 
-              {children}
+              <div className={styles.content}>{children}</div>
             </div>
           </div>
         )}
