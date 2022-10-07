@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  flex-direction: column;
+
+  gap: 30px;
+
+  & > .title {
+    font-size: 16px;
+    line-height: 16px;
+
+    font-weight: bold;
+  }
+
+  & > .comments {
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+  }
+
+  & > .empty {
+    font-weight: bold;
+    color: #7D8084;
+  }
+}

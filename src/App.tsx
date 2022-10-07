@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Header from 'components/Header';
+import Board from './components/Board';
 
-function App() {
+import styles from './App.module.scss';
+import { useSelector } from 'react-redux';
+import { RootStateType } from 'app/store';
+import Modal from 'components/Modal';
+import WelcomeForm from 'components/WelcomeForm';
+
+const currentUserSelector = ({
+  currentUserReducer: { currentUser },
+}: RootStateType) => currentUser;
+
+const App = () => {
+  const currentUser = useSelector(currentUserSelector);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={styles.container}>
+      <Header />
+      <Board />
+
+      <Modal isVisible={!currentUser}>
+        <WelcomeForm />
+      </Modal>
     </div>
   );
-}
+};
 
 export default App;

@@ -1,0 +1,22 @@
+.container {
+  & > .form {
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+
+    & > .fields {
+      display: flex;
+      flex-direction: column;
+
+      gap: 20px;
+    }
+
+    & > .actions {
+      display: flex;
+      flex-direction: row;
+
+      gap: 10px;
+    }
+  }
+}

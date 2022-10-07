@@ -1,0 +1,28 @@
+.name {
+  cursor: pointer;
+  padding: 10px;
+
+  background-color: #FFF;
+  border-radius: 5px;
+
+  word-wrap: break-word;
+  text-overflow: ellipsis;
+
+  &:hover {
+    background-color: #FAFAFA;
+  }
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+
+  gap: 30px;
+
+  & > .column {
+    color: #7D8084;
+
+    font-weight: bold;
+    font-style: italic;
+  }
+}

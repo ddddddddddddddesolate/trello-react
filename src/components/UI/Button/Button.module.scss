@@ -1,0 +1,13 @@
+.container {
+  & > .button {
+    cursor: pointer;
+
+    background-color: #7D8084;
+    color: #FFF;
+
+    border: none;
+    border-radius: 5px;
+
+    padding: 5px 20px;
+  }
+}
